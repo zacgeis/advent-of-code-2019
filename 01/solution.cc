@@ -1,9 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
+#include "../util.h"
 
-int part1(std::vector<int>& numbers) {
+int Part1(vector<int>& numbers) {
   int result = 0;
   for (int number : numbers) {
     result += (number / 3) - 2;
@@ -11,7 +8,7 @@ int part1(std::vector<int>& numbers) {
   return result;
 }
 
-int part2(std::vector<int>& numbers) {
+int Part2(vector<int>& numbers) {
   int result = 0;
   for (int number : numbers) {
     int temp = number;
@@ -26,23 +23,18 @@ int part2(std::vector<int>& numbers) {
 
 int main(int argc, char** argv) {
   if (argc < 2) {
-    std::cout << "Missing file" << std::endl;
+    cout << "Missing file" << endl;
     return -1;
   }
 
   const char* filename = argv[1];
-  std::ifstream input(filename);
-
-  std::vector<int> numbers;
-
-  std::string line;
-  while (std::getline(input, line)) {
+  vector<int> numbers;
+  for (string& line : ReadLines(filename)) {
     numbers.push_back(std::stoi(line));
   }
-  input.close();
 
-  std::cout << "Answer 1: " << part1(numbers) << std::endl;
-  std::cout << "Answer 2: " << part2(numbers) << std::endl;
+  cout << "Answer 1: " << Part1(numbers) << endl;
+  cout << "Answer 2: " << Part2(numbers) << endl;
 
   return 0;
 }
